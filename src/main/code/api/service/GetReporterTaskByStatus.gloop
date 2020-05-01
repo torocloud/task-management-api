@@ -1,0 +1,305 @@
+{
+    "input": [
+        {
+            "name": "reporterGuid"
+        },
+        {
+            "name": "status"
+        }
+    ],
+    "output": [
+        {
+            "name": "responseCode",
+            "type": "integer"
+        },
+        {
+            "name": "APIResponse",
+            "type": "model",
+            "reference": "io.toro.martini.api.APIResponse",
+            "gloopProperties": [
+                {
+                    "name": "task",
+                    "type": "model",
+                    "array": true,
+                    "reference": "model.Task"
+                }
+            ]
+        },
+        {
+            "name": "APIException",
+            "type": "model",
+            "reference": "io.toro.martini.api.APIException"
+        }
+    ],
+    "steps": [
+        {
+            "type": "block",
+            "blockType": "TRY_CATCH",
+            "children": [
+                {
+                    "type": "invokeGloop",
+                    "name": "sql.SelectReporterTaskByStatus",
+                    "declare": [
+                        {
+                            "variables": [
+                                {
+                                    "name": "selectReporterTaskByStatusInputCursor",
+                                    "type": "model",
+                                    "array": true,
+                                    "gloopProperties": [
+                                        {
+                                            "name": "ID",
+                                            "required": true,
+                                            "allowNull": false
+                                        },
+                                        {
+                                            "name": "TITLE",
+                                            "required": true,
+                                            "allowNull": false
+                                        },
+                                        {
+                                            "name": "DESCRIPTION",
+                                            "required": true,
+                                            "allowNull": false
+                                        },
+                                        {
+                                            "name": "ASSIGNEE_GUID",
+                                            "required": true,
+                                            "allowNull": false
+                                        },
+                                        {
+                                            "name": "REPORTER_GUID",
+                                            "required": true,
+                                            "allowNull": false
+                                        },
+                                        {
+                                            "name": "STATUS",
+                                            "required": true
+                                        },
+                                        {
+                                            "name": "CREATED_DATE",
+                                            "type": "date",
+                                            "required": true
+                                        },
+                                        {
+                                            "name": "UPDATED_DATE",
+                                            "type": "date",
+                                            "required": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "inputs": [
+                        {
+                            "from": [
+                                "reporterGuid"
+                            ],
+                            "to": [
+                                "selectReporterTaskByStatusInput",
+                                "reporterGuid"
+                            ]
+                        },
+                        {
+                            "from": [
+                                "status"
+                            ],
+                            "to": [
+                                "selectReporterTaskByStatusInput",
+                                "status"
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "from": [
+                                "selectReporterTaskByStatusInputCursor"
+                            ],
+                            "to": [
+                                "selectReporterTaskByStatusInputCursor"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "iterate",
+                    "input": {
+                        "path": [
+                            "selectReporterTaskByStatusInputCursor"
+                        ]
+                    },
+                    "output": {
+                        "path": [
+                            "APIResponse",
+                            "task"
+                        ]
+                    },
+                    "children": [
+                        {
+                            "lines": [
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "ID"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "id"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "TITLE"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "title"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "DESCRIPTION"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "description"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "ASSIGNEE_GUID"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "assignee"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "REPORTER_GUID"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "reporter"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "STATUS"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "status"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "CREATED_DATE"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "created_date"
+                                    ]
+                                },
+                                {
+                                    "from": [
+                                        "selectReporterTaskByStatusInputCursor",
+                                        "UPDATED_DATE"
+                                    ],
+                                    "to": [
+                                        "APIResponse",
+                                        "task",
+                                        "updated_date"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "lines": [
+                        {
+                            "type": "set",
+                            "expression": "200",
+                            "to": [
+                                "responseCode"
+                            ]
+                        },
+                        {
+                            "type": "set",
+                            "expression": "Successfully get all task",
+                            "to": [
+                                "APIResponse",
+                                "message"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "catch": [
+                {
+                    "lines": [
+                        {
+                            "type": "set",
+                            "expression": "400",
+                            "to": [
+                                "responseCode"
+                            ]
+                        },
+                        {
+                            "type": "set",
+                            "expression": "Failed to get all task",
+                            "to": [
+                                "APIException",
+                                "message"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "invokeCode",
+                    "className": "io.toro.martini.LoggerMethods",
+                    "methodName": "error",
+                    "parameters": [
+                        "java.lang.String",
+                        "java.lang.Throwable"
+                    ],
+                    "inputs": [
+                        {
+                            "from": [
+                                "$gloopException",
+                                "gloopStackTrace"
+                            ],
+                            "to": [
+                                "message"
+                            ]
+                        },
+                        {
+                            "from": [
+                                "$gloopException",
+                                "realException"
+                            ],
+                            "to": [
+                                "throwable"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

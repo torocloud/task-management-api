@@ -1,0 +1,80 @@
+{
+    "type": "customSql",
+    "input": [
+        {
+            "name": "selectReporterTaskByRangeDateInput",
+            "type": "model",
+            "gloopProperties": [
+                {
+                    "name": "$martiniConnectionPool"
+                },
+                {
+                    "name": "$limit",
+                    "type": "integer"
+                },
+                {
+                    "name": "reporterGuid"
+                },
+                {
+                    "name": "startDate",
+                    "type": "date"
+                },
+                {
+                    "name": "endDate",
+                    "type": "date"
+                }
+            ]
+        }
+    ],
+    "output": [
+        {
+            "name": "selectReporterTaskByRangeDateInputCursor",
+            "type": "model",
+            "array": true,
+            "gloopProperties": [
+                {
+                    "name": "ID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "TITLE",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "DESCRIPTION",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "ASSIGNEE_GUID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "REPORTER_GUID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "STATUS",
+                    "required": true
+                },
+                {
+                    "name": "CREATED_DATE",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "name": "UPDATED_DATE",
+                    "type": "date",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "connectionPoolName": "task_management",
+    "sqlType": "SELECT_MULTI",
+    "query": "SELECT *\nFROM\n\t\"TASK\"\nWHERE\n\t\"REPORTER_GUID\" = :reporterGuid AND\n\t\"CREATED_DATE\" BETWEEN \n\t\tCAST( :startDate AS DATE ) \n\t\t\tAND\n\t\tCAST( :endDate AS DATE )"
+}

@@ -1,0 +1,42 @@
+{
+    "name": "Task",
+    "type": "model",
+    "gloopProperties": [
+        {
+            "name": "id"
+        },
+        {
+            "name": "title"
+        },
+        {
+            "name": "description"
+        },
+        {
+            "name": "assignee",
+            "defaultValue": "UNASSIGNED"
+        },
+        {
+            "name": "reporter"
+        },
+        {
+            "name": "status",
+            "defaultValue": "OPEN",
+            "choices": [
+                "OPEN",
+                "IN PROGRESS",
+                "FOR REVIEW",
+                "CLOSED"
+            ]
+        },
+        {
+            "name": "created_date",
+            "type": "date",
+            "defaultValue": "now"
+        },
+        {
+            "name": "updated_date",
+            "type": "date",
+            "defaultValue": "now"
+        }
+    ]
+}

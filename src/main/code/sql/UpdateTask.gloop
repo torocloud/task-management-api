@@ -1,0 +1,45 @@
+{
+    "type": "customSql",
+    "input": [
+        {
+            "name": "updateTaskInput",
+            "type": "model",
+            "gloopProperties": [
+                {
+                    "name": "$martiniConnectionPool"
+                },
+                {
+                    "name": "title"
+                },
+                {
+                    "name": "description"
+                },
+                {
+                    "name": "assignee"
+                },
+                {
+                    "name": "reporter"
+                },
+                {
+                    "name": "status"
+                },
+                {
+                    "name": "updatedDate",
+                    "type": "date"
+                },
+                {
+                    "name": "id"
+                }
+            ]
+        }
+    ],
+    "output": [
+        {
+            "name": "updateCount",
+            "type": "integer"
+        }
+    ],
+    "connectionPoolName": "task_management",
+    "sqlType": "UPDATE",
+    "query": "UPDATE\n\t\"TASK\"\nSET\n\t\"TITLE\" = COALESCE( :title, \"TITLE\" ),\n\t\"DESCRIPTION\" = COALESCE( :description, \"DESCRIPTION\" ),\n\t\"ASSIGNEE_GUID\" = COALESCE( :assignee, \"ASSIGNEE_GUID\" ),\n\t\"REPORTER_GUID\" = COALESCE( :reporter, \"REPORTER_GUID\" ),\n\t\"STATUS\" = COALESCE( :status, \"STATUS\" ),\n\t\"UPDATED_DATE\" = COALESCE( :updatedDate, \"UPDATED_DATE\" )\nWHERE\n\t\"ID\" = :id"
+}

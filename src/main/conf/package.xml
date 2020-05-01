@@ -1,0 +1,5 @@
+<package stateOnStartup="started" id="task-management-api" version="1.0.0" context-path="/task-management-api">
+  <package-dependencies/>
+  <startup-services/>
+  <shutdown-services/>
+</package>

@@ -1,0 +1,327 @@
+{
+    "info": {
+        "version": "1.0.0-SNAPSHOT"
+    },
+    "basePath": "/taskmanagement/1.0",
+    "paths": {
+        "/task": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAllTask",
+                "responseCodeField": "responseCode"
+            },
+            "put": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "bodyParameter": {
+                    "name": "task",
+                    "description": "task"
+                },
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully update task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to update task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.UpdateTask",
+                "responseCodeField": "responseCode"
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "bodyParameter": {
+                    "name": "task",
+                    "description": "task"
+                },
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully created task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to create task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.AddTask",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/{taskId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "type": "PATH"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetTask",
+                "responseCodeField": "responseCode"
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "type": "PATH"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully delete task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to delete task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.DeleteTask",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/assignee/{assigneeGuid}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "assigneeGuid",
+                        "type": "PATH"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAllTaskByAssignee",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/reporter/{reporterGuid}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "reporterGuid",
+                        "type": "PATH"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAllTaskByReporter",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/status": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "status",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAllTaskByStatus",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/assignee/{assigneeGuid}/range": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "assigneeGuid",
+                        "type": "PATH"
+                    },
+                    {
+                        "name": "start_date",
+                        "type": "QUERY"
+                    },
+                    {
+                        "name": "end_date",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAssigneeTaskByRangeDate",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/assignee/{assigneeGuid}/status": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "assigneeGuid",
+                        "type": "PATH"
+                    },
+                    {
+                        "name": "status",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAssigneeTaskByStatus",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/reporter/{reporterGuid}/range": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "reporterGuid",
+                        "type": "PATH"
+                    },
+                    {
+                        "name": "start_date",
+                        "type": "QUERY"
+                    },
+                    {
+                        "name": "end_date",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetReporterTaskByRangeDate",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/reporter/{reporterGuid}/status": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "reporterGuid",
+                        "type": "PATH"
+                    },
+                    {
+                        "name": "status",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetReporterTaskByStatus",
+                "responseCodeField": "responseCode"
+            }
+        },
+        "/task/range": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "type": "QUERY"
+                    },
+                    {
+                        "name": "end_date",
+                        "type": "QUERY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "body": "APIResponse",
+                        "description": "Successfully get all task"
+                    },
+                    "400": {
+                        "body": "APIException",
+                        "description": "Failed to get all task"
+                    }
+                },
+                "operationType": "gloop",
+                "operationLocation": "api.service.GetAllTaskByRangeDate",
+                "responseCodeField": "responseCode"
+            }
+        }
+    }
+}

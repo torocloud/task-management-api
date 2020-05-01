@@ -1,0 +1,67 @@
+{
+    "type": "customSql",
+    "input": [
+        {
+            "name": "selectTaskInput",
+            "type": "model",
+            "gloopProperties": [
+                {
+                    "name": "$martiniConnectionPool"
+                },
+                {
+                    "name": "id"
+                }
+            ]
+        }
+    ],
+    "output": [
+        {
+            "name": "selectTaskOutput",
+            "type": "model",
+            "gloopProperties": [
+                {
+                    "name": "ID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "TITLE",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "DESCRIPTION",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "ASSIGNEE_GUID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "REPORTER_GUID",
+                    "required": true,
+                    "allowNull": false
+                },
+                {
+                    "name": "STATUS",
+                    "required": true
+                },
+                {
+                    "name": "CREATED_DATE",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "name": "UPDATED_DATE",
+                    "type": "date",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "connectionPoolName": "task_management",
+    "sqlType": "SELECT_SINGLE",
+    "query": "SELECT *\nFROM\n\t\"TASK\"\nWHERE\n\t\"ID\" = :id"
+}

@@ -1,0 +1,48 @@
+{
+    "type": "customSql",
+    "input": [
+        {
+            "name": "insertTaskInput",
+            "type": "model",
+            "gloopProperties": [
+                {
+                    "name": "$martiniConnectionPool"
+                },
+                {
+                    "name": "$getGeneratedKeys",
+                    "type": "boolean",
+                    "defaultValue": false
+                },
+                {
+                    "name": "id"
+                },
+                {
+                    "name": "title"
+                },
+                {
+                    "name": "description"
+                },
+                {
+                    "name": "assignee"
+                },
+                {
+                    "name": "reporter"
+                }
+            ]
+        }
+    ],
+    "output": [
+        {
+            "name": "updateCount",
+            "type": "integer"
+        },
+        {
+            "name": "generatedKeys",
+            "type": "model",
+            "allowExtraProperties": true
+        }
+    ],
+    "connectionPoolName": "task_management",
+    "sqlType": "INSERT",
+    "query": "INSERT INTO \"TASK\" (\n\t\"ID\",\n\t\"TITLE\",\n\t\"DESCRIPTION\",\n\t\"ASSIGNEE_GUID\",\n\t\"REPORTER_GUID\"\n) VALUES (\n\t:id,\n\t:title,\n\t:description,\n\t:assignee,\n\t:reporter\n)"
+}
